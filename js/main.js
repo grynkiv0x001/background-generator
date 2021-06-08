@@ -1,4 +1,6 @@
 const blocksNumber = 200;
+const parallaxSpeed = 5;
+
 const container = document.querySelector('.container');
 
 for (let i = 1; i < blocksNumber; i++) {
@@ -26,12 +28,8 @@ function generate() {
 }
 
 function parallax(e) {
-  this.querySelectorAll('.container').forEach(element => {
-    const speed = 2;
+  const x = (window.innerWidth - e.pageX * parallaxSpeed) / 100;
+  const y = (window.innerHeight - e.pageY * parallaxSpeed) / 100;
 
-    const x = (window.innerWidth - e.pageX * speed) / 100;
-    const y = (window.innerHeight - e.pageY * speed) / 100;
-
-    element.style.transform = `translateX(${x}px) translateY(${y}px)`;
-  });
+  container.style.transform = `translateX(${x}px) translateY(${y}px)`;
 }
