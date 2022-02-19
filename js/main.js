@@ -8,23 +8,25 @@ for (let i = 1; i < blocksNumber; i++) {
 
   blocks.classList.add('block');
   container.appendChild(blocks);
+  container.style.display = 'none';
 }
 
 function generate() {
   document.addEventListener('mousemove', parallax);
+  container.style.display = 'flex';
 
   anime({
     targets: '.block',
-    translateX: function() {
+    translateX: function () {
       return anime.random(-1000, 1000);
     },
-    translateY: function() {
+    translateY: function () {
       return anime.random(-800, 800);
     },
-    scale: function() {
+    scale: function () {
       return anime.random(1, 5);
-    }
-  })
+    },
+  });
 }
 
 function parallax(e) {
@@ -33,3 +35,5 @@ function parallax(e) {
 
   container.style.transform = `translateX(${x}px) translateY(${y}px)`;
 }
+
+document.removeEventListener('mousemove', parallax);
